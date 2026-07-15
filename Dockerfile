@@ -19,6 +19,7 @@ COPY --from=builder /app/web/dist ./web/dist
 COPY --from=builder /app/shared ./shared
 COPY --from=builder /app/package.json ./
 ENV NODE_ENV=production
+ENV DATABASE_URL="file:./backend/dev.db"
 ENV PORT=3001
 EXPOSE 3001
 COPY docker-entrypoint.sh /usr/local/bin/
