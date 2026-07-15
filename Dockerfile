@@ -24,4 +24,4 @@ EXPOSE 3001
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["npm", "run", "start"]
+CMD ["npx", "-w", "backend", "tsx", "src/index.ts"]
