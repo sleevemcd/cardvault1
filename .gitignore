@@ -3,4 +3,3 @@ dist/
 *.db
 .env
 web/package-lock.json
-package-lock.json

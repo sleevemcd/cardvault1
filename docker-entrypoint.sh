@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-DB_FILE="backend/dev.db"
+DB_FILE="backend/prisma/dev.db"
 
 export DATABASE_URL="${DATABASE_URL:-file:./backend/dev.db}"
 

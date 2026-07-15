@@ -10,7 +10,7 @@ interface IdentificationResult {
 const MANUFACTURERS = ['topps', 'bowman', 'panini', 'donruss', 'fleer', 'upper deck', 'leaf', 'score']
 const knownSets: Record<string, string[]> = {
   'topps': ['topps chrome', 'topps flagship', 'topps heritage', 'topps stadium club', 'topps finest', 'topps pristine', 'topps tribute', 'topps tier one', 'topps museum collection', 'topps dynasty', 'topps transcendent', 'topps five star', 'topps sterling', 'topps definitive'],
-  'bowman': ['bowman chrome', 'bowman sterling', 'bowman platinum', 'bowman's best', 'bowman inception', 'bowman draft'],
+  'bowman': ['bowman chrome', 'bowman sterling', 'bowman platinum', "bowman's best", 'bowman inception', 'bowman draft'],
   'panini': ['panini prizm', 'panini select', 'panini one', 'panini flawless', 'panini national treasures', 'panini immaculate', 'panini noir', 'panini mosaic'],
   'donruss': ['donruss optic', 'donruss elite', 'donruss absolute'],
 }
