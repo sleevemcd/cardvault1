@@ -1,0 +1,131 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  binders   Binder[]
+  ebayToken String?
+}
+
+model Set {
+  id            String   @id @default(cuid())
+  name          String
+  year          Int
+  sport         String
+  manufacturer  String
+  series        String?
+  totalCards    Int?
+  description   String?
+  releaseDate   DateTime?
+  imageUrl      String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  cards         Card[]
+}
+
+model Card {
+  id              String   @id @default(cuid())
+  setId           String
+  playerName      String
+  cardNumber      String
+  sport           String
+  year            Int
+  manufacturer    String
+  parallel        String?
+  isRookie        Boolean  @default(false)
+  isAutographed   Boolean  @default(false)
+  isMemorabilia   Boolean  @default(false)
+  serialNumbered  Int?
+  serialTotal     Int?
+  imageUrl        String?
+  thumbnailUrl    String?
+  rawMarketValue  Float?
+  lastSalePrice   Float?
+  lastSaleDate    DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  set             Set      @relation(fields: [setId], references: [id])
+  binderItems     BinderItem[]
+  ebayListings    EbayListing[]
+  grades          Grade[]
+}
+
+model Binder {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  userId      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user        User       @relation(fields: [userId], references: [id])
+  items       BinderItem[]
+}
+
+model BinderItem {
+  id               String   @id @default(cuid())
+  cardId           String
+  binderId         String
+  dateAdded        DateTime @default(now())
+  acquisitionPrice Float?
+  condition        String   @default("near-mint")
+  notes            String?
+
+  card            Card     @relation(fields: [cardId], references: [id])
+  binder          Binder   @relation(fields: [binderId], references: [id])
+
+  @@unique([cardId, binderId])
+}
+
+model Grade {
+  id               String   @id @default(cuid())
+  cardId           String
+  company          String
+  grade            Float
+  certNumber       String?
+  gradedValue      Float?
+  totalGraded      Int?
+  gradeDistribution Json?
+  gradedAt         DateTime?
+  lastUpdated      DateTime?
+  createdAt        DateTime @default(now())
+
+  card           Card     @relation(fields: [cardId], references: [id])
+
+  @@unique([cardId, company, certNumber])
+}
+
+model EbayListing {
+  id          String   @id @default(cuid())
+  cardId      String
+  itemId      String
+  title       String
+  price       Float
+  currency    String   @default("USD")
+  condition   String?
+  listingUrl  String?
+  sellerName  String?
+  sellerRating Float?
+  soldDate    DateTime?
+  isSold      Boolean  @default(false)
+  bidCount    Int?
+  createdAt   DateTime @default(now())
+
+  card        Card     @relation(fields: [cardId], references: [id])
+
+  @@unique([cardId, itemId])
+}

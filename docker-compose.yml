@@ -1,0 +1,18 @@
+services:
+  cardvault:
+    build: .
+    container_name: cardvault
+    ports:
+      - "3001:3001"
+    volumes:
+      - cardvault_data:/app/backend
+    restart: unless-stopped
+    healthcheck:
+      test: curl -f http://localhost:3001/health || exit 1
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+volumes:
+  cardvault_data:

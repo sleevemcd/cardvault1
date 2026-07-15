@@ -1,0 +1,42 @@
+{
+  "expo": {
+    "name": "CardVault",
+    "slug": "cardvault",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./src/assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "backgroundColor": "#1a1a2e"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.cardvault.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Camera is used to identify sports cards",
+        "NSPhotoLibraryUsageDescription": "Photo library is used to upload card images"
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#1a1a2e"
+      },
+      "package": "com.cardvault.app",
+      "permissions": ["CAMERA", "READ_EXTERNAL_STORAGE"]
+    },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Camera is used to identify sports cards"
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Photo library is used to upload card images"
+        }
+      ]
+    ]
+  }
+}

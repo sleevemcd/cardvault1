@@ -1,0 +1,6 @@
+{
+  "name": "@cardvault/shared",
+  "version": "0.1.0",
+  "main": "types.ts",
+  "types": "types.ts"
+}

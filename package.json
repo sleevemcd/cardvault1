@@ -1,0 +1,23 @@
+{
+  "name": "cardvault",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "mobile",
+    "shared",
+    "web"
+  ],
+  "scripts": {
+    "dev:api": "npm run dev -w backend",
+    "dev:web": "npm run dev -w web",
+    "dev:mobile": "npm run start -w mobile",
+    "build:web": "npm run build -w web",
+    "start": "npm run build:web && NODE_ENV=production npm run start -w backend"
+  },
+  "allowScripts": {
+    "prisma@6.19.3": true,
+    "@prisma/client@6.19.3": true,
+    "@prisma/engines@6.19.3": true,
+    "esbuild@0.25.12": true
+  }
+}
